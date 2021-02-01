@@ -8,7 +8,10 @@ public class BinanceApiConfig {
 	/**
 	 * Base domain for URLs.
 	 */
-	private static String BASE_DOMAIN = "binance.com";
+	private static String BASE_DOMAIN ;
+
+	private static String apiSubDomain;
+	private static String streamSubDomain;
 
 	/**
 	 * Set the URL base domain name (e.g., binance.com).
@@ -32,14 +35,29 @@ public class BinanceApiConfig {
 	 * REST API base URL.
 	 */
 	public static String getApiBaseUrl() {
-		return String.format("https://api.%s", getBaseDomain());
+		return String.format("https://%s.%s",getApiSubDomain(), getBaseDomain());
+	}
+
+
+	public static String getApiSubDomain(){return apiSubDomain;	}
+
+	public static void setApiSubDomain(String apiSubDomain) {
+		BinanceApiConfig.apiSubDomain = apiSubDomain;
+	}
+
+	public static String getStreamSubDomain() {
+		return streamSubDomain;
+	}
+
+	public static void setStreamSubDomain(String streamSubDomain) {
+		BinanceApiConfig.streamSubDomain = streamSubDomain;
 	}
 
 	/**
 	 * Streaming API base URL.
 	 */
 	public static String getStreamApiBaseUrl() {
-		return String.format("wss://stream.%s:9443/ws", getBaseDomain());
+		return String.format("wss://%s.%s/ws",getStreamSubDomain(), getBaseDomain());
 	}
 
 	/**
