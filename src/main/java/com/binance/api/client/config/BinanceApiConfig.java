@@ -8,63 +8,42 @@ public class BinanceApiConfig {
 	/**
 	 * Base domain for URLs.
 	 */
-	private static String BASE_DOMAIN ;
+	private static String apiBaseUrl ;
+	private static String wsBaseUrl ;
 
-	private static String apiSubDomain;
-	private static String streamSubDomain;
+	private static String streamApiBaseUrl ;
+	private static String assetInfoApiBaseUrl;
 
-	/**
-	 * Set the URL base domain name (e.g., binance.com).
-	 *
-	 * @param baseDomain Base domain name
-	 */
-	public static void setBaseDomain(final String baseDomain) {
-		BASE_DOMAIN = baseDomain;
-	}
 
-	/**
-	 * Get the URL base domain name (e.g., binance.com).
-	 *
-	 * @return The base domain for URLs
-	 */
-	public static String getBaseDomain() {
-		return BASE_DOMAIN;
-	}
-
-	/**
-	 * REST API base URL.
-	 */
 	public static String getApiBaseUrl() {
-		return String.format("https://%s.%s",getApiSubDomain(), getBaseDomain());
+		return apiBaseUrl;
 	}
 
-
-	public static String getApiSubDomain(){return apiSubDomain;	}
-
-	public static void setApiSubDomain(String apiSubDomain) {
-		BinanceApiConfig.apiSubDomain = apiSubDomain;
+	public static void setApiBaseUrl(String apiBaseUrl) {
+		BinanceApiConfig.apiBaseUrl = apiBaseUrl;
 	}
 
-	public static String getStreamSubDomain() {
-		return streamSubDomain;
+	public static String getWsBaseUrl() {
+		return wsBaseUrl;
 	}
 
-	public static void setStreamSubDomain(String streamSubDomain) {
-		BinanceApiConfig.streamSubDomain = streamSubDomain;
+	public static void setWsBaseUrl(String wsBaseUrl) {
+		BinanceApiConfig.wsBaseUrl = wsBaseUrl;
 	}
 
-	/**
-	 * Streaming API base URL.
-	 */
 	public static String getStreamApiBaseUrl() {
-		return String.format("wss://%s.%s/ws",getStreamSubDomain(), getBaseDomain());
+		return streamApiBaseUrl;
 	}
 
-	/**
-	 * Asset info base URL.
-	 */
+	public static void setStreamApiBaseUrl(String streamApiBaseUrl) {
+		BinanceApiConfig.streamApiBaseUrl = streamApiBaseUrl;
+	}
+
 	public static String getAssetInfoApiBaseUrl() {
-		return String.format("https://%s/", getBaseDomain());
+		return assetInfoApiBaseUrl;
 	}
 
+	public static void setAssetInfoApiBaseUrl(String assetInfoApiBaseUrl) {
+		BinanceApiConfig.assetInfoApiBaseUrl = assetInfoApiBaseUrl;
+	}
 }
