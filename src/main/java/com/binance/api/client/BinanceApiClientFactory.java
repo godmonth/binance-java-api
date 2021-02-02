@@ -54,6 +54,13 @@ public class BinanceApiClientFactory {
   /**
    * Creates a new synchronous/blocking REST client.
    */
+  public BinanceOcbsApiRestClient newOcbsClient() {
+    return new BinanceOcbsApiRestClientImpl(apiKey, secret);
+  }
+
+  /**
+   * Creates a new synchronous/blocking REST client.
+   */
   public BinanceApiRestClient newRestClient() {
     return new BinanceApiRestClientImpl(apiKey, secret);
   }
