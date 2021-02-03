@@ -46,16 +46,21 @@ public class BinanceApiWebSocketListener<T> extends WebSocketListener {
 
     @Override
     public void onClosing(final WebSocket webSocket, final int code, final String reason) {
-        log.debug("ws closing:", webSocket);
+        log.debug("ws onClosing:{},code:{},reason:{}:", webSocket, code, reason);
         closing = true;
     }
 
     @Override
     public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-        log.debug("ws onFailure:", webSocket);
-
+        log.debug("ws onFailure:{},throwable:{},response:{}:", webSocket, t, response);
         if (!closing) {
             callback.onFailure(t);
         }
+    }
+
+    @Override
+    public void onClosed(WebSocket webSocket, int code, String reason) {
+        log.debug("ws onClosed{},code:{},reason:{}:", webSocket, code, reason);
+        callback.onClosed();
     }
 }

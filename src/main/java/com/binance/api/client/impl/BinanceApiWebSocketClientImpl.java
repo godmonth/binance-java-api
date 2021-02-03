@@ -21,6 +21,7 @@ import okhttp3.WebSocket;
 import java.io.Closeable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -116,6 +117,11 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
      */
     @Override
     public void close() {
+    }
+
+    @Override
+    public void onClosed(Consumer<WebSocket> webSocketConsumer) {
+
     }
 
     private Closeable createNewWebSocket(String channel, BinanceApiWebSocketListener<?> listener) {

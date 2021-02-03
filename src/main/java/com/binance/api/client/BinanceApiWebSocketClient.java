@@ -9,9 +9,11 @@ import com.binance.api.client.domain.event.MiniTickerEvent;
 import com.binance.api.client.domain.event.TickerEvent;
 import com.binance.api.client.domain.event.UserDataUpdateEvent;
 import com.binance.api.client.domain.market.CandlestickInterval;
+import okhttp3.WebSocket;
 
 import java.io.Closeable;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Binance API data streaming facade, supporting streaming of events through web sockets.
@@ -98,4 +100,6 @@ public interface BinanceApiWebSocketClient extends Closeable {
      */
     @Deprecated
     void close();
+
+    public void onClosed(Consumer<WebSocket> webSocketConsumer);
 }
