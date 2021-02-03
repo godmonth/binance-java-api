@@ -3,9 +3,16 @@ package com.binance.api.client.impl;
 import com.binance.api.client.BinanceApiCallback;
 import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.config.BinanceApiConfig;
-import com.binance.api.client.domain.event.*;
+import com.binance.api.client.domain.event.AggTradeEvent;
+import com.binance.api.client.domain.event.BookTickerEvent;
+import com.binance.api.client.domain.event.CandlestickEvent;
+import com.binance.api.client.domain.event.DepthEvent;
+import com.binance.api.client.domain.event.MiniTickerEvent;
+import com.binance.api.client.domain.event.TickerEvent;
+import com.binance.api.client.domain.event.UserDataUpdateEvent;
 import com.binance.api.client.domain.market.CandlestickInterval;
 import com.fasterxml.jackson.core.type.TypeReference;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
@@ -18,6 +25,7 @@ import java.util.stream.Collectors;
 /**
  * Binance API WebSocket client implementation using OkHttp.
  */
+@Slf4j
 public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient, Closeable {
 
     private final OkHttpClient client;
@@ -86,7 +94,7 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
     }
 
     @Override
-    public Closeable onAMiniTickerEvent(String symbols,BinanceApiCallback<MiniTickerEvent> callback) {
+    public Closeable onAMiniTickerEvent(String symbols, BinanceApiCallback<MiniTickerEvent> callback) {
         final String channel = Arrays.stream(symbols.split(","))
                 .map(String::trim)
                 .map(s -> String.format("%s@miniTicker", s))
@@ -103,6 +111,7 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
 
     private Closeable createNewWebSocket(String channel, BinanceApiWebSocketListener<?> listener) {
         String streamingUrl = String.format("%s/%s", BinanceApiConfig.getStreamApiBaseUrl(), channel);
+        log.debug("streamingUrl:{}", streamingUrl);
         Request request = new Request.Builder().url(streamingUrl).build();
         final WebSocket webSocket = client.newWebSocket(request, listener);
         return () -> {
