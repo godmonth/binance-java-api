@@ -6,6 +6,7 @@ import com.binance.api.client.config.BinanceApiConfig;
 import com.binance.api.client.domain.event.AggTradeEvent;
 import com.binance.api.client.domain.event.BookTickerEvent;
 import com.binance.api.client.domain.event.CandlestickEvent;
+import com.binance.api.client.domain.event.CombineEvent;
 import com.binance.api.client.domain.event.DepthEvent;
 import com.binance.api.client.domain.event.MiniTickerEvent;
 import com.binance.api.client.domain.event.TickerEvent;
@@ -94,13 +95,21 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
     }
 
     @Override
-    public Closeable onAMiniTickerEvent(String symbols, BinanceApiCallback<MiniTickerEvent> callback) {
-        final String channel = Arrays.stream(symbols.split(","))
-                .map(String::trim)
-                .map(s -> String.format("%s@miniTicker", s))
-                .collect(Collectors.joining("/"));
+    public Closeable onMiniTickerEvent(String symbol, BinanceApiCallback<MiniTickerEvent> callback) {
+        final String channel = symbol + "@miniTicker";
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, MiniTickerEvent.class));
     }
+
+    @Override
+    public Closeable onCombineMiniTickerEvent(String symbols, BinanceApiCallback<CombineEvent<MiniTickerEvent>> callback) {
+        final String channel = Arrays.stream(symbols.split(","))
+                .map(String::trim)
+                .map(s -> String.format("%s@bookTicker", s))
+                .collect(Collectors.joining("/"));
+        return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, new TypeReference<CombineEvent<MiniTickerEvent>>() {
+        }));
+    }
+
 
     /**
      * @deprecated This method is no longer functional. Please use the returned {@link Closeable} from any of the other methods to close the web socket.
@@ -110,7 +119,12 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
     }
 
     private Closeable createNewWebSocket(String channel, BinanceApiWebSocketListener<?> listener) {
-        String streamingUrl = String.format("%s/%s", BinanceApiConfig.getStreamApiBaseUrl(), channel);
+        String streamingUrl = null;
+        if (channel.contains("/")) {
+            streamingUrl = String.format("%s%s", BinanceApiConfig.getCombineStreamApiBaseUrl(), channel);
+        } else {
+            streamingUrl = String.format("%s/%s", BinanceApiConfig.getStreamApiBaseUrl(), channel);
+        }
         log.debug("streamingUrl:{}", streamingUrl);
         Request request = new Request.Builder().url(streamingUrl).build();
         final WebSocket webSocket = client.newWebSocket(request, listener);
@@ -121,4 +135,5 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
             listener.onClosed(webSocket, code, null);
         };
     }
+
 }

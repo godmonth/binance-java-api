@@ -12,8 +12,17 @@ public class BinanceApiConfig {
 	private static String wsBaseUrl ;
 
 	private static String streamApiBaseUrl ;
+	private static String combineStreamApiBaseUrl ;
+
 	private static String assetInfoApiBaseUrl;
 
+	public static String getCombineStreamApiBaseUrl() {
+		return combineStreamApiBaseUrl;
+	}
+
+	public static void setCombineStreamApiBaseUrl(String combineStreamApiBaseUrl) {
+		BinanceApiConfig.combineStreamApiBaseUrl = combineStreamApiBaseUrl;
+	}
 
 	public static String getApiBaseUrl() {
 		return apiBaseUrl;
