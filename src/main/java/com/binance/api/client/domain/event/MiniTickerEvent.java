@@ -40,5 +40,11 @@ public class MiniTickerEvent {
     @JsonProperty("l")
     private String lowestPrice;
 
+    @JsonProperty("v")
+    private String volume;
+
+    @JsonProperty("q")
+    private String quantity;
+
 
 }

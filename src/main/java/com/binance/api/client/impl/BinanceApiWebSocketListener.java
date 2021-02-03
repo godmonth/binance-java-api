@@ -5,6 +5,7 @@ import com.binance.api.client.exception.BinanceApiException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
@@ -14,6 +15,7 @@ import java.io.IOException;
 /**
  * Binance API WebSocket listener.
  */
+@Slf4j
 public class BinanceApiWebSocketListener<T> extends WebSocketListener {
 
   private BinanceApiCallback<T> callback;
@@ -37,6 +39,7 @@ public class BinanceApiWebSocketListener<T> extends WebSocketListener {
   @Override
   public void onMessage(WebSocket webSocket, String text) {
     try {
+      log.trace("event:{}",text);
       T event = objectReader.readValue(text);
       callback.onResponse(event);
     } catch (IOException e) {

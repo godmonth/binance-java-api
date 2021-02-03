@@ -104,7 +104,7 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
     public Closeable onCombineMiniTickerEvent(String symbols, BinanceApiCallback<CombineEvent<MiniTickerEvent>> callback) {
         final String channel = Arrays.stream(symbols.split(","))
                 .map(String::trim)
-                .map(s -> String.format("%s@bookTicker", s))
+                .map(s -> String.format("%s@miniTicker", s))
                 .collect(Collectors.joining("/"));
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, new TypeReference<CombineEvent<MiniTickerEvent>>() {
         }));
