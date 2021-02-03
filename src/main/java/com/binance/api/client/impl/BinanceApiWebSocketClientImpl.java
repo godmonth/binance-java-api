@@ -128,6 +128,7 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
         log.debug("streamingUrl:{}", streamingUrl);
         Request request = new Request.Builder().url(streamingUrl).build();
         final WebSocket webSocket = client.newWebSocket(request, listener);
+
         return () -> {
             final int code = 1000;
             listener.onClosing(webSocket, code, null);
