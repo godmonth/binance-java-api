@@ -222,6 +222,8 @@ public interface BinanceApiRestClient {
    */
   List<Trade> getMyTrades(String symbol, Integer limit, Long fromId, Long recvWindow, Long timestamp);
 
+  List<Trade> getMyTrades(String symbol, Integer limit, Long fromId);
+
   /**
    * Get trades for a specific account and symbol.
    *
