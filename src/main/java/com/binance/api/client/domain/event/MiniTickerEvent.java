@@ -34,15 +34,27 @@ public class MiniTickerEvent {
     @JsonProperty("o")
     private String oldPrice;
 
+    /**
+     * 24小时内最高成交价
+     */
     @JsonProperty("h")
     private String highestPrice;
 
+    /**
+     * 24小时内最低成交价
+     */
     @JsonProperty("l")
     private String lowestPrice;
 
+    /**
+     * 成交量
+     */
     @JsonProperty("v")
     private String volume;
 
+    /**
+     * 成交额
+     */
     @JsonProperty("q")
     private String quantity;
 
