@@ -26,6 +26,6 @@ public class AccountEndpointsExampleAsync {
     client.getDepositHistory("ETH", response -> System.out.println(response));
 
     // Withdraw (async)
-    client.withdraw("aa","ETH", "0x123", "0.1", null, null, response -> {});
+    client.withdraw("aa","ETH", "0x123", "0.1", null, null,null,null, response -> {});
   }
 }

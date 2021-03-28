@@ -8,6 +8,8 @@ import com.binance.api.client.domain.account.NewOrderResponse;
 import com.binance.api.client.domain.account.Order;
 import com.binance.api.client.domain.account.Trade;
 import com.binance.api.client.domain.account.TradeHistoryItem;
+import com.binance.api.client.domain.account.Withdraw;
+import com.binance.api.client.domain.account.Withdraw2;
 import com.binance.api.client.domain.account.WithdrawHistory;
 import com.binance.api.client.domain.account.WithdrawResult;
 import com.binance.api.client.domain.account.request.AllOrdersRequest;
@@ -286,7 +288,7 @@ public interface BinanceApiRestClient {
      *
      * @return withdraw history, containing a list of withdrawals
      */
-    WithdrawHistory getWithdrawHistory2(String coin,  Integer status, Integer offset,  Integer limit, Long startTime, Long endTime);
+    List<Withdraw2> getWithdrawHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime);
 
     /**
      * Fetch deposit address.
