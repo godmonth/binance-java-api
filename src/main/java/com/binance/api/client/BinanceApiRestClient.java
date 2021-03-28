@@ -252,7 +252,7 @@ public interface BinanceApiRestClient {
      * @param name       description/alias of the address
      * @param addressTag Secondary address identifier for coins like XRP,XMR etc.
      */
-    WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag,String network);
+    WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag,String network,Boolean transactionFeeFlag);
 
     /**
      * Submit a withdraw request.
