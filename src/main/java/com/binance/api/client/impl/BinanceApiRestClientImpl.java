@@ -213,12 +213,12 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 
     @Override
     public WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag, String network, Boolean transactionFeeFlag) {
-        return executeSync(binanceApiService.withdraw(withdrawOrderId, asset, address, amount, name, addressTag,network,transactionFeeFlag, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+        return executeSync(binanceApiService.withdraw(withdrawOrderId, asset, address, amount, name, addressTag, network, transactionFeeFlag, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
     }
 
     @Override
-    public WithdrawResult withdraw2(String withdrawOrderId, String coin, String address, String amount, String name, String addressTag,String network,Boolean transactionFeeFlag) {
-        return executeSync(binanceApiService.withdraw2(withdrawOrderId, coin, address, amount, name, addressTag,network,transactionFeeFlag,BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+    public WithdrawResult withdraw2(String withdrawOrderId, String coin, String address, String amount, String name, String addressTag, String network, Boolean transactionFeeFlag) {
+        return executeSync(binanceApiService.withdraw2(withdrawOrderId, coin, address, amount, name, addressTag, network, transactionFeeFlag, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
     }
 
     @Override
@@ -229,6 +229,11 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     @Override
     public WithdrawHistory getWithdrawHistory(String asset) {
         return executeSync(binanceApiService.getWithdrawHistory(asset, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+    }
+
+    @Override
+    public WithdrawHistory getWithdrawHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime) {
+        return executeSync(binanceApiService.getWithdrawHistory2(coin, status, offset, limit, startTime, endTime, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
     }
 
     @Override
