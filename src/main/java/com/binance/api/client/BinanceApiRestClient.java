@@ -252,19 +252,21 @@ public interface BinanceApiRestClient {
      * @param name       description/alias of the address
      * @param addressTag Secondary address identifier for coins like XRP,XMR etc.
      */
-    WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag);
+    WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag,String network);
+
     /**
      * Submit a withdraw request.
      * <p>
      * Enable Withdrawals option has to be active in the API settings.
      *
-     * @param coin      asset symbol to withdraw
+     * @param coin       asset symbol to withdraw
      * @param address    address to withdraw to
      * @param amount     amount to withdraw
      * @param name       description/alias of the address
      * @param addressTag Secondary address identifier for coins like XRP,XMR etc.
      */
-    WithdrawResult withdraw2(String withdrawOrderId, String coin, String address, String amount, String name, String addressTag);
+    WithdrawResult withdraw2(String withdrawOrderId, String coin, String address, String amount, String name, String addressTag, String network,Boolean transactionFeeFlag);
+
     /**
      * Fetch account deposit history.
      *

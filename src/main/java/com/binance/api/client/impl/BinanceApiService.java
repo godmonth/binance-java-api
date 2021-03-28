@@ -167,13 +167,12 @@ public interface BinanceApiService {
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @POST("/wapi/v3/withdraw.html")
-    Call<WithdrawResult> withdraw(@Query("withdrawOrderId") String withdrawOrderId,@Query("asset") String asset, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag,
+    Call<WithdrawResult> withdraw(@Query("withdrawOrderId") String withdrawOrderId,@Query("asset") String asset, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag,@Query("network") String network,
                                   @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @POST("/sapi/v1/capital/withdraw/apply")
-    Call<WithdrawResult> withdraw2(@Query("withdrawOrderId") String withdrawOrderId,@Query("coin") String coin, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag,
-                                  @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+    Call<WithdrawResult> withdraw2(@Query("withdrawOrderId") String withdrawOrderId,@Query("coin") String coin, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag,@Query("network") String network,                               @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/wapi/v3/depositHistory.html")
