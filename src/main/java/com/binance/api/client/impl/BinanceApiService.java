@@ -6,6 +6,7 @@ import com.binance.api.client.domain.OrderType;
 import com.binance.api.client.domain.SwapRemoveType;
 import com.binance.api.client.domain.TimeInForce;
 import com.binance.api.client.domain.account.Account;
+import com.binance.api.client.domain.account.AssetDetail;
 import com.binance.api.client.domain.account.DepositAddress;
 import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.Liquidity;
@@ -26,7 +27,6 @@ import com.binance.api.client.domain.account.SwapQuote;
 import com.binance.api.client.domain.account.SwapRecord;
 import com.binance.api.client.domain.account.Trade;
 import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.Withdraw;
 import com.binance.api.client.domain.account.Withdraw2;
 import com.binance.api.client.domain.account.WithdrawHistory;
 import com.binance.api.client.domain.account.WithdrawResult;
@@ -55,6 +55,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Binance's REST API URL mappings and endpoint security configuration.
@@ -76,6 +77,14 @@ public interface BinanceApiService {
 
     @GET
     Call<List<Asset>> getAllAssets(@Url String url);
+
+    @Headers({BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER, BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER})
+    @GET("/sapi/v1/capital/config/getall")
+    Call<List<Asset>> getAllAssets2(@Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+
+    @Headers({BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER, BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER})
+    @GET("/sapi/v1/asset/assetDetail")
+    Call<Map<String, AssetDetail>> getAssetDetail(@Query("asset") String asset, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     // Market data endpoints
 
@@ -170,7 +179,7 @@ public interface BinanceApiService {
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @POST("/wapi/v3/withdraw.html")
-    Call<WithdrawResult> withdraw(@Query("withdrawOrderId") String withdrawOrderId,@Query("asset") String asset, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag,@Query("network") String network,@Query("transactionFeeFlag") Boolean transactionFeeFlag,
+    Call<WithdrawResult> withdraw(@Query("withdrawOrderId") String withdrawOrderId, @Query("asset") String asset, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag, @Query("network") String network, @Query("transactionFeeFlag") Boolean transactionFeeFlag,
                                   @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
@@ -345,7 +354,6 @@ public interface BinanceApiService {
             @Query("swapId") String swapId,
             @Query("recvWindow") Long recvWindow,
             @Query("timestamp") Long timestamp);
-
 
 
 }

@@ -4,6 +4,7 @@ import com.binance.api.client.BinanceApiRestClient;
 import com.binance.api.client.config.BinanceApiConfig;
 import com.binance.api.client.constant.BinanceApiConstants;
 import com.binance.api.client.domain.account.Account;
+import com.binance.api.client.domain.account.AssetDetail;
 import com.binance.api.client.domain.account.DepositAddress;
 import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.NewOrder;
@@ -11,7 +12,6 @@ import com.binance.api.client.domain.account.NewOrderResponse;
 import com.binance.api.client.domain.account.Order;
 import com.binance.api.client.domain.account.Trade;
 import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.Withdraw;
 import com.binance.api.client.domain.account.Withdraw2;
 import com.binance.api.client.domain.account.WithdrawHistory;
 import com.binance.api.client.domain.account.WithdrawResult;
@@ -33,6 +33,7 @@ import com.binance.api.client.domain.market.TickerStatistics;
 import retrofit2.Call;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.binance.api.client.impl.BinanceApiServiceGenerator.createService;
 import static com.binance.api.client.impl.BinanceApiServiceGenerator.executeSync;
@@ -68,6 +69,16 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     @Override
     public List<Asset> getAllAssets() {
         return executeSync(binanceApiService.getAllAssets(BinanceApiConfig.getAssetInfoApiBaseUrl() + "assetWithdraw/getAllAsset.html"));
+    }
+
+    @Override
+    public List<Asset> getAllAssets2() {
+        return executeSync(binanceApiService.getAllAssets2(null, System.currentTimeMillis()));
+    }
+
+    @Override
+    public Map<String, AssetDetail> getAssetDetail(String asset) {
+        return executeSync(binanceApiService.getAssetDetail(asset, null, System.currentTimeMillis()));
     }
 
     // Market Data endpoints

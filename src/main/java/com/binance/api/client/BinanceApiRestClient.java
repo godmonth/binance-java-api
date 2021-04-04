@@ -1,6 +1,7 @@
 package com.binance.api.client;
 
 import com.binance.api.client.domain.account.Account;
+import com.binance.api.client.domain.account.AssetDetail;
 import com.binance.api.client.domain.account.DepositAddress;
 import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.NewOrder;
@@ -30,6 +31,7 @@ import com.binance.api.client.domain.market.TickerStatistics;
 import retrofit2.http.Query;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Binance API facade, supporting synchronous/blocking access Binance's REST API.
@@ -59,9 +61,16 @@ public interface BinanceApiRestClient {
      * @return All the supported assets and whether or not they can be withdrawn.
      */
     List<Asset> getAllAssets();
-
+    /**
+     * @return All the supported assets and whether or not they can be withdrawn.
+     */
+    List<Asset> getAllAssets2();
     // Market Data endpoints
-
+    /**
+     * @return All the supported assets and whether or not they can be withdrawn.
+     */
+    Map<String, AssetDetail> getAssetDetail(String asset);
+    // Market Data endpoints
     /**
      * Get order book of a symbol.
      *
