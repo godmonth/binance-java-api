@@ -15,6 +15,7 @@ import com.binance.api.client.domain.account.Withdraw;
 import com.binance.api.client.domain.account.Withdraw2;
 import com.binance.api.client.domain.account.WithdrawHistory;
 import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.WithdrawResult2;
 import com.binance.api.client.domain.account.request.AllOrdersRequest;
 import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
@@ -219,7 +220,7 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     }
 
     @Override
-    public WithdrawResult withdraw2(String withdrawOrderId, String coin, String address, String amount, String name, String addressTag, String network, Boolean transactionFeeFlag) {
+    public WithdrawResult2 withdraw2(String withdrawOrderId, String coin, String address, String amount, String name, String addressTag, String network, Boolean transactionFeeFlag) {
         return executeSync(binanceApiService.withdraw2(withdrawOrderId, coin, address, amount, name, addressTag, network, transactionFeeFlag, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
     }
 

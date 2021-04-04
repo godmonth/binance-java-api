@@ -30,6 +30,7 @@ import com.binance.api.client.domain.account.Withdraw;
 import com.binance.api.client.domain.account.Withdraw2;
 import com.binance.api.client.domain.account.WithdrawHistory;
 import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.WithdrawResult2;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
 import com.binance.api.client.domain.event.ListenKey;
 import com.binance.api.client.domain.general.Asset;
@@ -174,7 +175,7 @@ public interface BinanceApiService {
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @POST("/sapi/v1/capital/withdraw/apply")
-    Call<WithdrawResult> withdraw2(@Query("withdrawOrderId") String withdrawOrderId,@Query("coin") String coin, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag,@Query("network") String network,  @Query("transactionFeeFlag") Boolean transactionFeeFlag,                             @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+    Call<WithdrawResult2> withdraw2(@Query("withdrawOrderId") String withdrawOrderId, @Query("coin") String coin, @Query("address") String address, @Query("amount") String amount, @Query("name") String name, @Query("addressTag") String addressTag, @Query("network") String network, @Query("transactionFeeFlag") Boolean transactionFeeFlag, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/wapi/v3/depositHistory.html")
