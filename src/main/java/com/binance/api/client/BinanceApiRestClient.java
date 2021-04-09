@@ -304,7 +304,7 @@ public interface BinanceApiRestClient {
      * @param limit     从offset开始，包含limit个元素
      * @param startTime 毫秒.包含
      * @param endTime   毫秒.包含
-     * @return
+     * @return 按照applyTime降序排列
      */
     List<Withdraw2> getWithdrawHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime);
 
