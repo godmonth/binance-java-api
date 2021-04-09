@@ -9,7 +9,6 @@ import com.binance.api.client.domain.account.NewOrderResponse;
 import com.binance.api.client.domain.account.Order;
 import com.binance.api.client.domain.account.Trade;
 import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.Withdraw;
 import com.binance.api.client.domain.account.Withdraw2;
 import com.binance.api.client.domain.account.WithdrawHistory;
 import com.binance.api.client.domain.account.WithdrawResult;
@@ -28,7 +27,6 @@ import com.binance.api.client.domain.market.CandlestickInterval;
 import com.binance.api.client.domain.market.OrderBook;
 import com.binance.api.client.domain.market.TickerPrice;
 import com.binance.api.client.domain.market.TickerStatistics;
-import retrofit2.http.Query;
 
 import java.util.List;
 import java.util.Map;
@@ -61,16 +59,19 @@ public interface BinanceApiRestClient {
      * @return All the supported assets and whether or not they can be withdrawn.
      */
     List<Asset> getAllAssets();
+
     /**
      * @return All the supported assets and whether or not they can be withdrawn.
      */
     List<Asset> getAllAssets2();
     // Market Data endpoints
+
     /**
      * @return All the supported assets and whether or not they can be withdrawn.
      */
     Map<String, AssetDetail> getAssetDetail(String asset);
     // Market Data endpoints
+
     /**
      * Get order book of a symbol.
      *
@@ -265,7 +266,7 @@ public interface BinanceApiRestClient {
      * @param name       description/alias of the address
      * @param addressTag Secondary address identifier for coins like XRP,XMR etc.
      */
-    WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag,String network,Boolean transactionFeeFlag);
+    WithdrawResult withdraw(String withdrawOrderId, String asset, String address, String amount, String name, String addressTag, String network, Boolean transactionFeeFlag);
 
     /**
      * Submit a withdraw request.
@@ -293,10 +294,17 @@ public interface BinanceApiRestClient {
      * @return withdraw history, containing a list of withdrawals
      */
     WithdrawHistory getWithdrawHistory(String asset);
+
     /**
-     * Fetch account withdraw history.
+     * Fetch account withdraw history.按照applyTime降序
      *
-     * @return withdraw history, containing a list of withdrawals
+     * @param coin
+     * @param status
+     * @param offset    从0开始，第offset个元素，而不是第几个分页，
+     * @param limit     从offset开始，包含limit个元素
+     * @param startTime 毫秒.包含
+     * @param endTime   毫秒.包含
+     * @return
      */
     List<Withdraw2> getWithdrawHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime);
 

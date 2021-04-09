@@ -31,6 +31,9 @@ public class Withdraw2 {
      */
     private String coin;
 
+    /**
+     * 秒.gmt时区.当地时间
+     */
     private String applyTime;
 
     /**
