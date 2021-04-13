@@ -34,6 +34,7 @@ import com.binance.api.client.domain.account.WithdrawResult2;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
 import com.binance.api.client.domain.event.ListenKey;
 import com.binance.api.client.domain.general.Asset;
+import com.binance.api.client.domain.general.AssetConfig;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.ServerTime;
 import com.binance.api.client.domain.market.AggTrade;
@@ -80,7 +81,7 @@ public interface BinanceApiService {
 
     @Headers({BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER, BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER})
     @GET("/sapi/v1/capital/config/getall")
-    Call<List<Asset>> getAllAssets2(@Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+    Call<List<AssetConfig>> getAllAssets2(@Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers({BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER, BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER})
     @GET("/sapi/v1/asset/assetDetail")

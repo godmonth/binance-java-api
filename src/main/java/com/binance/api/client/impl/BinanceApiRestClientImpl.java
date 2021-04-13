@@ -22,6 +22,7 @@ import com.binance.api.client.domain.account.request.CancelOrderResponse;
 import com.binance.api.client.domain.account.request.OrderRequest;
 import com.binance.api.client.domain.account.request.OrderStatusRequest;
 import com.binance.api.client.domain.general.Asset;
+import com.binance.api.client.domain.general.AssetConfig;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.market.AggTrade;
 import com.binance.api.client.domain.market.BookTicker;
@@ -72,7 +73,7 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     }
 
     @Override
-    public List<Asset> getAllAssets2() {
+    public List<AssetConfig> getAllAssets2() {
         return executeSync(binanceApiService.getAllAssets2(null, System.currentTimeMillis()));
     }
 
