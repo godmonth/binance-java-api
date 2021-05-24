@@ -6,7 +6,7 @@
 
     <groupId>com.godmonth.fork.binance.api</groupId>
     <artifactId>binance-api-client</artifactId>
-    <version>1.0.1-gd-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <licenses>
         <license>
             <name>The MIT License</name>
