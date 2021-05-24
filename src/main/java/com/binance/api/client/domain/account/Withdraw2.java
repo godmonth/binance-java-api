@@ -16,7 +16,6 @@ import java.util.TimeZone;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@ToString
 public class Withdraw2 {
     private static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT"));
     private BigDecimal transactionFee;

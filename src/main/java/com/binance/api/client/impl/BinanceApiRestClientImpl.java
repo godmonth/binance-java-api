@@ -5,6 +5,7 @@ import com.binance.api.client.config.BinanceApiConfig;
 import com.binance.api.client.constant.BinanceApiConstants;
 import com.binance.api.client.domain.account.Account;
 import com.binance.api.client.domain.account.AssetDetail;
+import com.binance.api.client.domain.account.Deposit2;
 import com.binance.api.client.domain.account.DepositAddress;
 import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.NewOrder;
@@ -249,6 +250,11 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     @Override
     public List<Withdraw2> getWithdrawHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime) {
         return executeSync(binanceApiService.getWithdrawHistory2(coin, status, offset, limit, startTime, endTime, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+    }
+
+    @Override
+    public List<Deposit2> getDepositHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime) {
+        return executeSync(binanceApiService.getDepositHistory2(coin, status, offset, limit, startTime, endTime, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
     }
 
     @Override

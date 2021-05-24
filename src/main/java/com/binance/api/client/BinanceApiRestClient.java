@@ -2,6 +2,7 @@ package com.binance.api.client;
 
 import com.binance.api.client.domain.account.Account;
 import com.binance.api.client.domain.account.AssetDetail;
+import com.binance.api.client.domain.account.Deposit2;
 import com.binance.api.client.domain.account.DepositAddress;
 import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.NewOrder;
@@ -308,6 +309,18 @@ public interface BinanceApiRestClient {
      * @return 按照applyTime降序排列
      */
     List<Withdraw2> getWithdrawHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime);
+
+    /**
+     * 按照insertTime排序
+     * @param coin
+     * @param status
+     * @param offset
+     * @param limit
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<Deposit2> getDepositHistory2(String coin, Integer status, Integer offset, Integer limit, Long startTime, Long endTime);
 
     /**
      * Fetch deposit address.

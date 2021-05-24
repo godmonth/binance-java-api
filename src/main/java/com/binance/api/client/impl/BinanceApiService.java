@@ -7,6 +7,7 @@ import com.binance.api.client.domain.SwapRemoveType;
 import com.binance.api.client.domain.TimeInForce;
 import com.binance.api.client.domain.account.Account;
 import com.binance.api.client.domain.account.AssetDetail;
+import com.binance.api.client.domain.account.Deposit2;
 import com.binance.api.client.domain.account.DepositAddress;
 import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.Liquidity;
@@ -198,6 +199,10 @@ public interface BinanceApiService {
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/sapi/v1/capital/withdraw/history")
     Call<List<Withdraw2>> getWithdrawHistory2(@Query("coin") String coin, @Query("status") Integer status, @Query("offset") Integer offset, @Query("limit") Integer limit, @Query("startTime") Long startTime, @Query("endTime") Long endTime, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+
+    @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+    @GET("/sapi/v1/capital/deposit/hisrec")
+    Call<List<Deposit2>> getDepositHistory2(@Query("coin") String coin, @Query("status") Integer status, @Query("offset") Integer offset, @Query("limit") Integer limit, @Query("startTime") Long startTime, @Query("endTime") Long endTime, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/wapi/v3/depositAddress.html")
