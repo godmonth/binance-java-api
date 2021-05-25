@@ -47,7 +47,7 @@ public class Deposit2 {
      */
     private int status;
 
-    private Date getInsertTimeDate() {
+    public Date getInsertTimeDate() {
         if (insertTime != null) {
             return new Date(insertTime);
         } else {
